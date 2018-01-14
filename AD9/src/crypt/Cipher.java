@@ -104,9 +104,9 @@ public class Cipher {
 	
 	public String decrypt(String s,RSA rsa) {
 		byte[] encrypted = base64Decode(s);
-		for(byte b : encrypted) {
-			System.out.print(b);
-		}
+//		for(byte b : encrypted) {
+//			System.out.print(b);
+//		}
 		cipheredsessionkey = new byte[16];
 		System.arraycopy(encrypted, 0, cipheredsessionkey, 0, 16);
 		sessionkey = BigInt2Byte(rsa.decipherRSA(Byte2BigInt(cipheredsessionkey)), 16);

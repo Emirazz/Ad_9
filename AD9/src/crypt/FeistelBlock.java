@@ -19,7 +19,7 @@ public class FeistelBlock {
 	/**
 	 * size of every block 
 	 */
-	public final int BLOCK_SIZE;
+	public final int BLOCK_SIZE = 16;
 	
 	/**
 	 * startpoint of the block
@@ -32,7 +32,6 @@ public class FeistelBlock {
 	 * @param current byte block
 	 */
 	public FeistelBlock(byte[] b, int i) {
-		this.BLOCK_SIZE = 16;
 		this.start = i;
 		left = new byte[BLOCK_SIZE/2];
 		right = new byte[BLOCK_SIZE/2];
@@ -64,7 +63,6 @@ public class FeistelBlock {
 	public byte[] xor(byte[] a,byte[] key){
 		 byte[] res = new byte[a.length];
 		    for (int i = 0; i < a.length; i++) {
-		     // res[i] = ((byte)(a[i] ^ key[(i % key.length)]));
 		    	 res[i] = ((byte)(a[i] ^ key[(i)]));
 		    }
 		    return res;
@@ -75,20 +73,9 @@ public class FeistelBlock {
 	 * @param key:byte[] sessionkey
 	 */
 	public void round(byte[] key){
-		//swap();
-		//right = xor(f(right,key),key);
 		byte[] temp = right;
 		right = xor(left,f(right,key));
 		left = temp;
-		//TEST
-//		System.out.print("TEST: ");
-//		for(byte singlebyte : left) {
-//		System.out.print( singlebyte + " ");
-//	}
-//		for(byte singlebyte : right) {
-//		System.out.print( singlebyte + " ");
-//	}
-//		System.out.println();
 	}
 	/**
 	 * ##encrypting method f()##
@@ -100,7 +87,6 @@ public class FeistelBlock {
 	private byte[] f(byte[] right, byte[] key) {
 		BigInteger BIGINT_RIGHT = Cipher.Byte2BigInt(right);
 		BigInteger BIGINT_KEY = Cipher.Byte2BigInt(key);
-		//Math.pow(2, 64)-1 = 18446744073709551615
 		BigInteger res = BIGINT_RIGHT.multiply(BIGINT_RIGHT).add(BIGINT_KEY).mod(new BigInteger("18446744073709551615"));
 		return Cipher.BigInt2Byte(res, right.length);
 	}

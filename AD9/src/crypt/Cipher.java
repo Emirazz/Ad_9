@@ -221,39 +221,11 @@ public class Cipher {
 	public byte[] blockencrypt(byte[] b,byte[] key) {
 		
 		byte[] cipher = new byte[b.length];
-//		fb = new FeistelBlock[b.length / BLOCK_SIZE];
-//		
-//		for(int i = 0; i < fb.length;i++){
-//			
-//			byte[] cur_block = new byte[BLOCK_SIZE];
-//			System.arraycopy(b, BLOCK_SIZE * (i+1), cur_block, 0, BLOCK_SIZE);
-//			fb[i] = new FeistelBlock(cur_block);
-//		}
-//		
-//		for (int i = 0; i < ROUNDS; i++) {
-//			for(int j = 0; j < fb.length;j++){
-//		      fb[j].round(key);
-//			}
-//		    }
-//		for(int i = 0; i < fb.length;i++){
-//			byte[] cur_block = fb[i].getBlock();
-//			System.arraycopy(cur_block, 0, cipher, BLOCK_SIZE * (i+1), BLOCK_SIZE);
-
-//		}
-		
 		return cipher;
 	}
 	
 	public byte[] blockdecrypt(byte[] b,byte[] key) {
 		byte[] decrypted = new byte[1];
-//		for(int j = 0; j < fb.length;j++){
-//			fb[j].swap();
-//		}
-//		decrypted = blockencrypt(b, key);
-//		for(int j = 0; j < fb.length;j++){
-//			fb[j].swap();
-//		}
-//		
 		return decrypted;
 	}
 	/**

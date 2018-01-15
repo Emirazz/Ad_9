@@ -84,15 +84,6 @@ public class RSA {
 	public void extractKey(String foreignkey){
 		new Cipher();
 		byte[] key = Cipher.base64Decode(foreignkey);
-//		if ((key.length < 24) && (key.length >= 8)) {
-//			 System.out.println("Error: foreign key format" + key.length);
-//		}
-//		if (key.length < 8) {
-//			 System.out.println("Error: foreign key format" + key.length);
-//		}
-//		if (key.length > 24) {
-//			 System.out.println("Error: foreign key format" + key.length);
-//		}
 		byte[] foreignpublickey = new byte[8];
 		byte[] foreignmod = new byte[16];
 		System.arraycopy(key, 0, foreignpublickey, 0, 8);

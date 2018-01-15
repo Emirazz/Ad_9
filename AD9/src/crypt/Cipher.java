@@ -104,9 +104,6 @@ public class Cipher {
 	
 	public String decrypt(String s,RSA rsa) {
 		byte[] encrypted = base64Decode(s);
-//		for(byte b : encrypted) {
-//			System.out.print(b);
-//		}
 		cipheredsessionkey = new byte[16];
 		System.arraycopy(encrypted, 0, cipheredsessionkey, 0, 16);
 		sessionkey = BigInt2Byte(rsa.decipherRSA(Byte2BigInt(cipheredsessionkey)), 16);
@@ -119,6 +116,7 @@ public class Cipher {
 		}
 		return new String(byte_plaintext);
 	}
+	
 	private byte[] blockencrypt(byte[] b, int i, byte[] key) {
 		FeistelBlock block  = new FeistelBlock(b,i); 
 		for (int j = 0; j < 12; j++) {
@@ -126,6 +124,7 @@ public class Cipher {
 		    }
 		return block.getBlock();
 	}
+	
 	private byte[] blockdecrypt(byte[] b, int i, byte[] key) {
 		FeistelBlock block  = new FeistelBlock(b,i); 
 		  block.swap();
@@ -142,7 +141,6 @@ public class Cipher {
 	 * @return byte[]
 	 */
 	public byte[] plainToByte(String s) {
-		this.plaintext = s;
 		return s.getBytes();
 	}
 	

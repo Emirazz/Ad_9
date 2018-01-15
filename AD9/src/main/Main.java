@@ -26,11 +26,27 @@ public class Main {
 		String pubkey = scanner.nextLine();
 		RSA rsa = new RSA();
 		rsa.extractKey(pubkey);
-		System.out.println("Enter message:");
-		String plaintext = scanner.nextLine();
-		Cipher cipher = new Cipher();
-		String encryptedtext = cipher.encrypt(plaintext, rsa);
-		System.out.println("encryptedtext:" + encryptedtext);
+		boolean eingeben = false;
+		do {
+			System.out.println("Enter message:");
+			scanner = new Scanner(System.in);
+			String plaintext = scanner.nextLine();
+			Cipher cipher = new Cipher();
+			String encryptedtext = cipher.encrypt(plaintext, rsa);
+			System.out.println("encryptedtext:" + encryptedtext);
+			System.out.println("");
+			System.out.println("");
+			System.out.println("Fuer weitere Eingaben druecke 1, ansonsten 2");
+			int input1 = scanner.nextInt();
+			if(input1 == 1) {
+				eingeben = true;
+			}else if(input1 == 2){
+				eingeben = false;
+			}else {
+				System.out.println("ungueltige Eingabe");
+				eingeben = false;
+			}
+		}while(eingeben);
 		scanner.close();
 	}
 	private static void entschluesseln() {
@@ -47,7 +63,6 @@ public class Main {
 			Cipher cipher = new Cipher();
 			String plaintext = cipher.decrypt(input, rsa);
 			System.out.println("plaintext:" + plaintext);
-			System.out.println("");
 			System.out.println("");
 			System.out.println("");
 			System.out.println("Fuer weitere Eingaben druecke 1, ansonsten 2");

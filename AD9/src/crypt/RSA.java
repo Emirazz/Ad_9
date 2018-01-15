@@ -82,7 +82,8 @@ public class RSA {
 		phi = prime1.subtract(BigInteger.ONE).multiply(prime2.subtract(BigInteger.ONE));
 	}
 	public void extractKey(String foreignkey){
-		byte[] key = new Cipher().base64Decode(foreignkey);
+		new Cipher();
+		byte[] key = Cipher.base64Decode(foreignkey);
 //		if ((key.length < 24) && (key.length >= 8)) {
 //			 System.out.println("Error: foreign key format" + key.length);
 //		}

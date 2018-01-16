@@ -8,7 +8,7 @@ public class Main {
 
 	public static void main(String[] args) {
 		Scanner in = new Scanner(System.in);
-		System.out.println("Bitte druecke 1 fuer eine Verschluesselung oder 2 fuer eine Entschluesselung:");
+		System.out.println("1 für Verschlüsselung / 2 für Entschlüsselung:");
 		int input = in.nextInt();
 		if(input == 1) {
 			verschlusseln();
@@ -26,7 +26,7 @@ public class Main {
 		String pubkey = scanner.nextLine();
 		RSA rsa = new RSA();
 		rsa.extractKey(pubkey);
-		boolean eingeben = false;
+		boolean z = true;
 		do {
 			System.out.println("Enter message:");
 			scanner = new Scanner(System.in);
@@ -35,26 +35,20 @@ public class Main {
 			String encryptedtext = cipher.encrypt(plaintext, rsa);
 			System.out.println("encryptedtext:" + encryptedtext);
 			System.out.println("");
-			System.out.println("");
-			System.out.println("Fuer weitere Eingaben druecke 1, ansonsten 2");
-			int input1 = scanner.nextInt();
-			if(input1 == 1) {
-				eingeben = true;
-			}else if(input1 == 2){
-				eingeben = false;
-			}else {
-				System.out.println("ungueltige Eingabe");
-				eingeben = false;
+			System.out.println("Für Eingabe Beenden drücke 1, ansonsten etwas anders");
+			int input = scanner.nextInt();
+			if(input == 1) {
+				z = false;
 			}
-		}while(eingeben);
+		}while(z);
 		scanner.close();
 	}
 	private static void entschluesseln() {
 		RSA rsa = new RSA();
 		String ownpubkey = rsa.generateKeys(16);
 		System.out.println("eigener public key:" + ownpubkey);
-		boolean eingabe = false;
 		Scanner scanner;
+		boolean z = true;
 		do {
 			System.out.println("Enter encrypted message:");
 			scanner = new Scanner(System.in);
@@ -65,19 +59,12 @@ public class Main {
 			System.out.println("plaintext:" + plaintext);
 			System.out.println("");
 			System.out.println("");
-			System.out.println("Fuer weitere Eingaben druecke 1, ansonsten 2");
-			int input1 = scanner.nextInt();
-			if(input1 == 1) {
-				eingabe = true;
-			}else if(input1 == 2){
-				eingabe = false;
-			}else {
-				System.out.println("ungueltige Eingabe");
-				eingabe = false;
+			System.out.println("Für Eingabe Beenden drücke 1, ansonsten etwas anders");
+			int in = scanner.nextInt();
+			if(in == 1) {
+				z = false;
 			}
-		}while(eingabe);
+		}while(z);
 		scanner.close();
 	}
-
-
 }
